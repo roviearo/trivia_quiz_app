@@ -26,7 +26,7 @@ class QuizService {
       final queryParameters = {
         'type': 'multiple',
         'amount': settingsState.numQuestions.toString(),
-        'category': settingsState.category.toString(),
+        'category': settingsState.category.id.toString(),
       };
 
       if (settingsState.difficulty != Difficulty.any) {
@@ -40,12 +40,12 @@ class QuizService {
       var url = Uri.https('opentdb.com', '/api.php', queryParameters);
 
       var response = await http.get(url);
-
       if (response.statusCode == 200) {
         var decodeResponse = jsonDecode(utf8.decode(response.bodyBytes)) as Map;
 
         final results =
             List<Map<String, dynamic>>.from(decodeResponse['results'] ?? []);
+
         if (results.isNotEmpty) {
           return results.map((e) => QuizQuestion.fromMap(e)).toList();
         }

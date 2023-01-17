@@ -44,7 +44,7 @@ class QuizController extends StateNotifier<QuizState> {
     // if (state.status == QuizStatus.complete) {
     //   final SettingsState settingsState = ref.watch(settingsControllerProvider);
 
-    //   QuizSe
+    //   ref.read(settingsState);
     // }
   }
 

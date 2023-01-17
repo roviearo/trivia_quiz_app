@@ -17,6 +17,7 @@ class QuizPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final questions = ref.watch(quizQuestionsProvider);
+
     final pageController = usePageController();
 
     return Scaffold(
@@ -30,24 +31,11 @@ class QuizPage extends HookConsumerWidget {
           },
           icon: const Icon(Icons.settings),
         ),
-        actions: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(right: 20),
-            child: GestureDetector(
-              onTap: () {
-                // context.goNamed(AppR)
-              },
-              child: const Icon(
-                Icons.calendar_month_outlined,
-                size: 26,
-              ),
-            ),
-          ),
-        ],
       ),
       body: questions.when(
         data: (data) {
           final quizState = ref.watch(quizControllerProvider);
+
           return quizState.status == QuizStatus.complete
               ? QuizResult(state: quizState, questions: data!)
               : QuizQuestions(

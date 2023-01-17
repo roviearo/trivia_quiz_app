@@ -18,11 +18,11 @@ class QuizQuestion with _$QuizQuestion {
     return QuizQuestion(
       category: map['category'] ?? '',
       difficulty: map['difficulty'] ?? '',
-      type: map['type'] ?? '',
       question: map['question'] ?? '',
-      correctAnswer: map['correct_nswer'] ?? '',
+      type: map['type'] ?? '',
+      correctAnswer: map['correct_answer'] ?? '',
       incorrectAnswer: map['incorrect_answers'].cast<String>() ?? [],
-      answers: List<String>.from(map['incorrectAnswers'].cast<String>() ?? [])
+      answers: List<String>.from(map['incorrect_answers'].cast<String>() ?? [])
         ..add(map['correct_answer'] ?? '')
         ..shuffle(),
     );
